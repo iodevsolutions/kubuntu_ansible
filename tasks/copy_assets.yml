@@ -1,0 +1,88 @@
+- name: Copy wallpaper
+  become_user: root
+  copy: 
+    src: files/noon-wallpaper.jpg 
+    dest: /usr/share/wallpapers/noon/
+    owner: orndorff
+    group: orndorff
+    mode: '0600'
+    
+- name: Copy desktop theme
+  become_user: orndorff
+  copy: 
+    src: files/aether-dark-0-0-3a.zip 
+    dest: /home/orndorff/Downloads/aether-dark-0-0-3a.zip
+
+- name: Extract desktop theme
+  become_user: orndorff
+  unarchive: 
+    src: /home/orndorff/Downloads/aether-dark-0-0-3a.zip 
+    dest: /home/orndorff/Downloads/aetherdark
+    remote_src: yes 
+
+- name: Create desktop theme directory
+  become_user: orndorff
+  file:
+    path: /home/orndorff/.local/share/plasma/desktoptheme/
+    state: directory
+    mode: '0755'
+
+- name: Move desktop theme
+  become_user: orndorff
+  copy: 
+    src: /home/orndorff/Downloads/aetherdark 
+    dest: /home/orndorff/.local/share/plasma/look-and-feel
+    remote_src: yes
+
+- name: Copy icon theme
+  become_user: orndorff
+  copy: 
+    src: files/Zafiro-icons-master.zip
+    dest: /home/orndorff/Downloads/Zafiro-icons-master.zip
+
+- name: Extract icon theme
+  become_user: orndorff
+  unarchive:
+    src: /home/orndorff/Downloads/Zafiro-icons-master.zip
+    dest: /home/orndorff/Downloads/Zafiro-icons-master
+    remote_src: yes
+
+- name: Create icon theme directory
+  become_user: orndorff
+  file:
+    path: /home/orndorff/.local/share/icons/
+    state: directory
+    mode: '0755'
+
+- name: Move icon theme
+  become_user: orndorff
+  copy:
+    src: /home/orndorff/Downloads/Zafiro-icons-master
+    dest: /home/orndorff/.local/share/icons
+    remote_src: yes
+
+- name: Copy Google font
+  become_user: orndorff
+  copy: 
+    src: files/Montserrat.zip 
+    dest: /home/orndorff/Downloads/Montserrat.zip
+
+- name: Make Google font directory
+  become_user: root
+  file:
+    path: /usr/share/fonts/googlefonts/
+    state: directory
+    mode: '0755'
+  
+- name: Unzip Google font to new directory
+  become_user: root
+  unarchive:
+    src: /home/orndorff/Downloads/Montserrat.zip 
+    dest: /usr/share/fonts/googlefonts
+    remote_src: yes
+
+- name: Create reference to new Google font directory
+  shell: chmod -R --reference=/usr/share/fonts/opentype /usr/share/fonts/googlefonts
+
+- name: Update font cache
+  shell: fc-cache -fv

@@ -1,0 +1,30 @@
+- name: Install required packages for Kvantum
+  apt: 
+    name: [ 'g++', 'libx11-dev', 'libxext-dev', 'qtbase5-dev', 'libqt5svg5-dev', 'libqt5x11extras5-dev', 'libkf5windowsystem-dev', 'qttools5-dev-tools', 'cmake', 'checkinstall']
+
+- name: Copy Kvantum source
+  become_user: orndorff
+  copy: 
+    src: files/Kvantum-master.zip
+    dest: /home/orndorff/Downloads/Kvantum-master.zip
+
+- name: Extract Kvantum source
+  become_user: orndorff
+  unarchive: 
+    src: /home/orndorff/Downloads/Kvantum-master.zip 
+    dest: /home/orndorff/Kvantum-master
+    remote_src: yes
+
+- name: Copy Kvantum theme
+  become_user: orndorff
+  copy: 
+    src: files/Aether-kv.zip
+    dest: /home/orndorff/Downloads/Aether-kv.zip
+
+- name: Extract Kvantum theme
+  become_user: orndorff
+  unarchive: 
+    src: /home/orndorff/Downloads/Aether-kv.zip 
+    dest: /home/orndorff/Aether-kv
+    remote_src: yes 
+

@@ -1,0 +1,18 @@
+- name: Check for existing OMF installation
+  stat: path=/home/orndorff/.config/omf
+  register: p
+
+- name: Install OMF
+  become_user: orndorff
+  shell: curl -sL https://deb.nodesource.com/setup | sudo bash -
+  args:
+    warn: no
+  when: not p.stat.exists
+
+- name: Install Spacefish theme
+  shell: omf install spacefish
+  when: not p.stat.exists
+
+- name: Change the default shell to Fish
+  shell: chsh -s $(which fish) orndorff
+  when: not p.stat.exists
