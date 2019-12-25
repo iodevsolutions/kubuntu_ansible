@@ -1,4 +1,4 @@
-### Add Ansible repository (ie. Ubuntu/Debian)
+## Add Ansible repository (ie. Ubuntu/Debian)
 ```Shell
 sudo apt-get install software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
