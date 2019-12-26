@@ -2,16 +2,16 @@
   stat: path=/home/orndorff/.local/share/omf
   register: p
 
-- name: Install OMF (curl)
+- name: Get OMF (curl)
   become_user: orndorff
-  shell: curl -L https://get.oh-my.fish > install
+  shell: curl -L https://get.oh-my.fish > /home/orndorff/Downloads/install
   args:
     warn: no
   when: not p.stat.exists
 
 - name: Install OMF (fish)
   become_user: orndorff
-  shell: fish install --path=/home/orndorff/.local/share/omf --config=/home/orndorff/.config/omf
+  shell: fish /home/orndorff/Downloads/install --path=/home/orndorff/.local/share/omf --config=/home/orndorff/.config/omf
   args:
     warn: no
   when: not p.stat.exists
