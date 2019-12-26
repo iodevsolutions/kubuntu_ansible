@@ -1,10 +1,17 @@
 - name: Check for existing OMF installation
-  stat: path=/home/orndorff/.config/omf
+  stat: path=/home/orndorff/.local/share/omf
   register: p
 
-- name: Install OMF
+- name: Install OMF (curl)
   become_user: orndorff
-  shell: curl -L https://get.oh-my.fish | fish
+  shell: curl -L https://get.oh-my.fish > install
+  args:
+    warn: no
+  when: not p.stat.exists
+
+- name: Install OMF (fish)
+  become_user: orndorff
+  shell: fish install --path=~/.local/share/omf --config=~/.config/omf
   args:
     warn: no
   when: not p.stat.exists

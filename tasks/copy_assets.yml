@@ -17,7 +17,7 @@
   become_user: orndorff
   unarchive: 
     src: /home/orndorff/Downloads/aether-dark-0-0-3a.zip 
-    dest: /home/orndorff/Downloads/aetherdark
+    dest: /home/orndorff/Downloads
     remote_src: yes 
 
 - name: Create desktop theme directory
