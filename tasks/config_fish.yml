@@ -11,7 +11,7 @@
 
 - name: Install OMF (fish)
   become_user: orndorff
-  shell: fish install --path=~/.local/share/omf --config=~/.config/omf
+  shell: fish install --path=/home/orndorff/.local/share/omf --config=/home/orndorff/.config/omf
   args:
     warn: no
   when: not p.stat.exists
