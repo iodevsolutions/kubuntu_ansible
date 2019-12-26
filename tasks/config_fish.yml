@@ -4,7 +4,7 @@
 
 - name: Install OMF
   become_user: orndorff
-  shell: curl -sL https://deb.nodesource.com/setup | sudo bash -
+  shell: curl -L https://get.oh-my.fish | fish
   args:
     warn: no
   when: not p.stat.exists

@@ -1,4 +1,4 @@
 - name: Install packages
   apt: 
-    name: ['neovim', 'git', 'curl', 'fish', 'fonts-powerline', 'neofetch']
+    name: ['neovim', 'curl', 'fish', 'fonts-powerline', 'neofetch']
 

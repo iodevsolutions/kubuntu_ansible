@@ -7,6 +7,7 @@ sudo apt-get update
 
 ## Install Ansible package
 ```Shell
+sudo apt-get install git
 sudo apt-get install ansible
 ```
 
