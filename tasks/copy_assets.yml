@@ -23,15 +23,15 @@
 - name: Create desktop theme directory
   become_user: orndorff
   file:
-    path: /home/orndorff/.local/share/plasma/desktoptheme/
+    path: /home/orndorff/.local/share/plasma/desktoptheme
     state: directory
     mode: '0755'
 
 - name: Move desktop theme
   become_user: orndorff
   copy: 
-    src: /home/orndorff/Downloads/aetherdark 
-    dest: /home/orndorff/.local/share/plasma/look-and-feel
+    src: /home/orndorff/Downloads/aether-dark 
+    dest: /home/orndorff/.local/share/plasma/desktoptheme
     remote_src: yes
 
 - name: Copy icon theme
@@ -44,7 +44,7 @@
   become_user: orndorff
   unarchive:
     src: /home/orndorff/Downloads/Zafiro-icons-master.zip
-    dest: /home/orndorff/Downloads/Zafiro-icons-master
+    dest: /home/orndorff/Downloads
     remote_src: yes
 
 - name: Create icon theme directory
