@@ -4,7 +4,7 @@
 
 - name: Install OMF
   become_user: orndorff
-  shell: curl -L https://get.oh-my.fish | fish
+  shell: curl -L https://get.oh-my.fish | fish -
   args:
     warn: no
   when: not p.stat.exists
